@@ -22,7 +22,7 @@ class Application():
         janela.title("Sistema de Login") 
 
     def tela_de_login(self):
-        image = ctk.CTkImage(Image.open("imagem4.png"),size=(400,420)) 
+        image = ctk.CTkImage(Image.open("imgs/imagem4.png"),size=(400,420)) 
         image_label = ctk.CTkLabel(janela, text="", image=image).place(x=0, y=35)
 
         # Frame
@@ -51,6 +51,9 @@ class Application():
             # Remover o Login Frame
             login_frame.pack_forget()
 
+            image = ctk.CTkImage(Image.open("imgs/imagem3.png"),size=(400,420)) 
+            image_label = ctk.CTkLabel(janela, text="", image=image).place(x=0, y=35)
+
             # Criando a tela de cadastro do cliente
             rg_frame = ctk.CTkFrame(janela, width=380, height=400, border_width=1, border_color="#B0C4DE")
             rg_frame.place(x=400, y=50)
@@ -71,8 +74,10 @@ class Application():
 
             def voltar_tela_de_login():
                 # Remove o Cadastro Frame
-                rg_frame.destroy()  # "Destroy"serve para destruir tudo que se encontra neste frame       
-
+                rg_frame.place_forget()
+                image = ctk.CTkImage(Image.open("imgs/imagem4.png"),size=(400,420)) 
+                image_label = ctk.CTkLabel(janela, text="", image=image).place(x=0, y=35)  # "Destroy"serve para destruir tudo que se encontra neste frame       
+            
             back_button = ctk.CTkButton(rg_frame, text="Voltar", width=140, fg_color="#708090", command=voltar_tela_de_login).place(x=40, y=330)
 
             register_button = ctk.CTkButton(rg_frame, text="Cadastre-se", width=140, fg_color="#228B22", hover_color="#006400").place(x=200, y=330)
