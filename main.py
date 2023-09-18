@@ -1,5 +1,4 @@
 import customtkinter as ctk
-import tkinter as tk
 from PIL import Image, ImageTk 
 
 janela = ctk.CTk()
@@ -31,8 +30,8 @@ class Application():
         login_frame.place(x=400, y=50)
 
         # Frame Widgets
-        label = ctk.CTkLabel(login_frame, text="Sistema de Login")
-        label.place(x=65, y=35)
+        label = ctk.CTkLabel(login_frame, text="Área de Login")
+        label.place(x=90, y=35)
         label.configure(font=("Lato", 30))
 
         # Área do login do cliente
@@ -47,7 +46,39 @@ class Application():
         login_button = ctk.CTkButton(login_frame, text="Login", width=300).place(x=40, y=300)
 
         register_span = ctk.CTkLabel(login_frame, text="Caso não tenha conta.").place(x=50, y=350)
-        register_button = ctk.CTkButton(login_frame, text="Cadastre-se", width=150, fg_color="#228B22", hover_color="#006400").place(x=190, y=350)
+
+        def tela_register():
+            # Remover o Login Frame
+            login_frame.pack_forget()
+
+            # Criando a tela de cadastro do cliente
+            rg_frame = ctk.CTkFrame(janela, width=380, height=400, border_width=1, border_color="#B0C4DE")
+            rg_frame.place(x=400, y=50)
+
+            label = ctk.CTkLabel(rg_frame, text="Cadastro de Usuário")
+            label.place(x=58, y=35)
+            label.configure(font=("Lato", 30))
+
+            entry_usuario= ctk.CTkEntry(rg_frame, placeholder_text="Usuário", width=300).place(x=40, y=115)
+
+            entry_email= ctk.CTkEntry(rg_frame, placeholder_text="E-mail", width=300).place(x=40, y=155)
+
+            entry_senha= ctk.CTkEntry(rg_frame, placeholder_text="Senha", width=300).place(x=40, y=195)
+
+            entry_confirme_senha= ctk.CTkEntry(rg_frame, placeholder_text="Confirme sua senha", width=300).place(x=40, y=235)
+
+            check_box = ctk.CTkCheckBox(rg_frame, text="Aceito os termos e políticas de uso").place(x=40, y=275)
+
+            def voltar_tela_de_login():
+                # Remove o Cadastro Frame
+                rg_frame.destroy()  # "Destroy"serve para destruir tudo que se encontra neste frame       
+
+            back_button = ctk.CTkButton(rg_frame, text="Voltar", width=140, fg_color="#708090", command=voltar_tela_de_login).place(x=40, y=330)
+
+            register_button = ctk.CTkButton(rg_frame, text="Cadastre-se", width=140, fg_color="#228B22", hover_color="#006400").place(x=200, y=330)
+
+
+        register_button = ctk.CTkButton(login_frame, text="Cadastre-se", width=150, fg_color="#228B22", hover_color="#006400", command=tela_register).place(x=190, y=350)
 
 
 Application()
