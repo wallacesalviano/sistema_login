@@ -1,5 +1,6 @@
 import customtkinter as ctk
-from PIL import Image, ImageTk 
+from PIL import Image
+from tkinter import messagebox
 
 janela = ctk.CTk()
 
@@ -43,7 +44,10 @@ class Application():
 
         check_box = ctk.CTkCheckBox(login_frame, text="Lembrar a senha").place(x=40, y=255)
 
-        login_button = ctk.CTkButton(login_frame, text="Login", width=300).place(x=40, y=300)
+        def login_warning():
+            msg = messagebox.showinfo(title="Situação do Login", message="Parabéns! Login realizado com sucesso")
+
+        login_button = ctk.CTkButton(login_frame, text="Login", width=300, command=login_warning).place(x=40, y=300)
 
         register_span = ctk.CTkLabel(login_frame, text="Caso não tenha conta.").place(x=50, y=350)
 
@@ -79,11 +83,13 @@ class Application():
                 image_label = ctk.CTkLabel(janela, text="", image=image).place(x=0, y=35)  # "Destroy"serve para destruir tudo que se encontra neste frame       
             
             back_button = ctk.CTkButton(rg_frame, text="Voltar", width=140, fg_color="#708090", command=voltar_tela_de_login).place(x=40, y=330)
+            
+            def  register_warning():
+                msg = messagebox.showinfo(title="Situação do cadastro", message="Parabéns! Usuário cadastro com sucesso")
 
-            register_button = ctk.CTkButton(rg_frame, text="Cadastre-se", width=140, fg_color="#228B22", hover_color="#006400").place(x=200, y=330)
+            register_button = ctk.CTkButton(rg_frame, text="Cadastre-se", width=140, fg_color="#228B22", hover_color="#006400", command=register_warning).place(x=200, y=330)
 
 
         register_button = ctk.CTkButton(login_frame, text="Cadastre-se", width=150, fg_color="#228B22", hover_color="#006400", command=tela_register).place(x=190, y=350)
-
 
 Application()
